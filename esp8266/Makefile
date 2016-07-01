@@ -129,6 +129,7 @@ LIB_SRC_C = $(addprefix lib/,\
 
 DRIVERS_SRC_C = $(addprefix drivers/,\
 	dht/dht.c \
+	slave/slave.c \
         )
 
 SRC_S = \
