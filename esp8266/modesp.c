@@ -698,7 +698,7 @@ STATIC const mp_map_elem_t esp_module_globals_table[] = {
     { MP_OBJ_NEW_QSTR(MP_QSTR_neopixel_write), (mp_obj_t)&esp_neopixel_write_obj },
     { MP_OBJ_NEW_QSTR(MP_QSTR_apa102_write), (mp_obj_t)&esp_apa102_write_obj },
     { MP_OBJ_NEW_QSTR(MP_QSTR_dht_readinto), (mp_obj_t)&dht_readinto_obj },
-    { MP_OBJ_NEW_QSTR(MP_QSTR_slave_readin), (mp_obj_t)&slave_readinto_obj },
+    { MP_OBJ_NEW_QSTR(MP_QSTR_slave_readin), (mp_obj_t)&slave_readin_obj },
     { MP_OBJ_NEW_QSTR(MP_QSTR_freemem), (mp_obj_t)&esp_freemem_obj },
     { MP_OBJ_NEW_QSTR(MP_QSTR_meminfo), (mp_obj_t)&esp_meminfo_obj },
     { MP_OBJ_NEW_QSTR(MP_QSTR_info), (mp_obj_t)&pyb_info_obj }, // TODO delete/rename/move elsewhere
