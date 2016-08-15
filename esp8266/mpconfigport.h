@@ -25,6 +25,7 @@
 #define MICROPY_MODULE_WEAK_LINKS   (1)
 #define MICROPY_CAN_OVERRIDE_BUILTINS (1)
 #define MICROPY_USE_INTERNAL_ERRNO  (1)
+#define MICROPY_PY_ALL_SPECIAL_METHODS (1)
 #define MICROPY_PY_BUILTINS_COMPLEX (0)
 #define MICROPY_PY_BUILTINS_STR_UNICODE (1)
 #define MICROPY_PY_BUILTINS_BYTEARRAY (1)
@@ -75,6 +76,7 @@
 #define MICROPY_WARNINGS            (1)
 #define MICROPY_PY_STR_BYTES_CMP_WARN (1)
 #define MICROPY_STREAMS_NON_BLOCK   (1)
+#define MICROPY_STREAMS_POSIX_API   (1)
 #define MICROPY_MODULE_FROZEN_STR   (1)
 #define MICROPY_MODULE_FROZEN_MPY   (1)
 #define MICROPY_MODULE_FROZEN_LEXER mp_lexer_new_from_str32
@@ -87,6 +89,7 @@
 #define MICROPY_FATFS_LFN_CODE_PAGE    (437) /* 1=SFN/ANSI 437=LFN/U.S.(OEM) */
 #define MICROPY_FSUSERMOUNT            (1)
 #define MICROPY_VFS_FAT                (1)
+#define MICROPY_ESP8266_APA102         (1)
 
 #define MICROPY_EVENT_POLL_HOOK {ets_event_poll();}
 #define MICROPY_VM_HOOK_COUNT (10)
@@ -112,10 +115,10 @@
 
 typedef int32_t mp_int_t; // must be pointer size
 typedef uint32_t mp_uint_t; // must be pointer size
-typedef void *machine_ptr_t; // must be of pointer size
-typedef const void *machine_const_ptr_t; // must be of pointer size
 typedef long mp_off_t;
 typedef uint32_t sys_prot_t; // for modlwip
+// ssize_t, off_t as required by POSIX-signatured functions in stream.h
+#include <sys/types.h>
 
 #define MP_PLAT_PRINT_STRN(str, len) mp_hal_stdout_tx_strn_cooked(str, len)
 

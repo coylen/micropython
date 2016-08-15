@@ -59,8 +59,6 @@ extern const struct _mp_obj_module_t time_module;
 
 typedef int32_t mp_int_t; // must be pointer size
 typedef unsigned int mp_uint_t; // must be pointer size
-typedef void *machine_ptr_t; // must be of pointer size
-typedef const void *machine_const_ptr_t; // must be of pointer size
 typedef long mp_off_t;
 
 #define MP_PLAT_PRINT_STRN(str, len) mp_hal_stdout_tx_strn_cooked(str, len)
@@ -99,14 +97,6 @@ __attribute__(( always_inline )) static inline mp_uint_t disable_irq(void) {
 
 #define MICROPY_BEGIN_ATOMIC_SECTION()     disable_irq()
 #define MICROPY_END_ATOMIC_SECTION(state)  enable_irq(state)
-
-// There is no classical C heap in bare-metal ports, only Python
-// garbage-collected heap. For completeness, emulate C heap via
-// GC heap. Note that MicroPython core never uses malloc() and friends,
-// so these defines are mostly to help extension module writers.
-#define malloc gc_alloc
-#define free gc_free
-#define realloc gc_realloc
 
 // We need to provide a declaration/definition of alloca()
 #include <alloca.h>

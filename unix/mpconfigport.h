@@ -63,6 +63,7 @@
 #define MICROPY_FLOAT_IMPL          (MICROPY_FLOAT_IMPL_DOUBLE)
 #define MICROPY_LONGINT_IMPL        (MICROPY_LONGINT_IMPL_MPZ)
 #define MICROPY_STREAMS_NON_BLOCK   (1)
+#define MICROPY_STREAMS_POSIX_API   (1)
 #define MICROPY_OPT_COMPUTED_GOTO   (1)
 #ifndef MICROPY_OPT_CACHE_MAP_LOOKUP_IN_BYTECODE
 #define MICROPY_OPT_CACHE_MAP_LOOKUP_IN_BYTECODE (1)
@@ -72,6 +73,7 @@
 #define MICROPY_PY_DESCRIPTORS      (1)
 #define MICROPY_PY_BUILTINS_STR_UNICODE (1)
 #define MICROPY_PY_BUILTINS_STR_CENTER (1)
+#define MICROPY_PY_BUILTINS_STR_PARTITION (1)
 #define MICROPY_PY_BUILTINS_STR_SPLITLINES (1)
 #define MICROPY_PY_BUILTINS_MEMORYVIEW (1)
 #define MICROPY_PY_BUILTINS_FROZENSET (1)
@@ -119,6 +121,7 @@
 #ifndef MICROPY_PY_USELECT
 #define MICROPY_PY_USELECT          (1)
 #endif
+#define MICROPY_PY_WEBSOCKET        (1)
 #define MICROPY_PY_MACHINE          (1)
 #define MICROPY_PY_MACHINE_PULSE    (1)
 #define MICROPY_MACHINE_MEM_GET_READ_ADDR   mod_machine_mem_get_addr
@@ -228,9 +231,6 @@ typedef long long mp_off_t;
 typedef long mp_off_t;
 #endif
 
-typedef void *machine_ptr_t; // must be of pointer size
-typedef const void *machine_const_ptr_t; // must be of pointer size
-
 void mp_unix_alloc_exec(mp_uint_t min_size, void** ptr, mp_uint_t *size);
 void mp_unix_free_exec(void *ptr, mp_uint_t size);
 void mp_unix_mark_exec(void);
@@ -302,5 +302,7 @@ void mp_unix_mark_exec(void);
 #define _DIRENT_HAVE_D_INO (1)
 #endif
 
+#ifndef __APPLE__
 // For debugging purposes, make printf() available to any source file.
 #include <stdio.h>
+#endif
